@@ -2,23 +2,23 @@
 // github.com/n0xa | IG: @4x0nn
 
 
-#include "common.h"
+#include "src/common/common.h"
 
-#include "applejuice.h"
-#include "WORLD_IR_CODES.h"
+#include "src/applejuice/applejuice.h"
+#include "src/world_ir_codes/world_ir_codes.h"
 
-#include "wifispam.h"
-#include "sd.h"
-#include "portal.h"
+#include "src/wifispam/wifispam.h"
+#include "src/sd/sd.h"
+#include "src/portal/portal.h"
 #include "NEMOMatrix.h"
-#include "songs.h"
+#include "src/songs/songs.h"
 
 
-#include "settings.h"
-#include "wifi.h"
-#include "dimmer.h"
-#include "bluetooth.h"
-#include "tvbg.h"
+#include "src/settings/settings.h"
+#include "src/wifi/wifi.h"
+#include "src/dimmer/dimmer.h"
+#include "src/bluetooth/bluetooth.h"
+#include "src/tvbg/tvbg.h"
 
 extern int rotation;
 
@@ -483,6 +483,66 @@ void portal_loop(){
   check_select_press();
 }
 
+struct ProcessPair {
+  void (*setup_func)();
+  void (*loop_func)();
+};
+
+void defaultProc(){
+    return;
+}
+
+#define MAX_PROC_DEFS 255
+ProcessPair processArray[MAX_PROC_DEFS] = {&defaultProc, &defaultProc};
+
+
+void setupProcArray(){
+#if defined(RTC)
+  processArray[0] = {&clock_setup, &clock_loop};
+#endif
+  processArray[1] = {&mmenu_setup, &mmenu_loop};
+  processArray[2] = {&smenu_setup, &smenu_loop};
+#if defined(RTC)
+  processArray[3] = {&timeset_setup, &timeset_loop};
+#endif
+  processArray[4] = {&dmenu_setup, &dmenu_loop};
+  processArray[5] = {&tvbgone_setup, &tvbgone_loop};
+#if defined(AXP) || defined(PWRMGMT)
+  processArray[6] = {&battery_setup, &battery_loop};
+#endif
+#if defined(CARDPUTER)
+  processArray[6] = {&battery_setup, &battery_loop};
+#endif
+#if defined(ROTATION)
+  processArray[7] = {&rmenu_setup, &rmenu_loop};
+#endif
+  processArray[8] = {&aj_setup, &aj_loop};
+  processArray[9] = {&aj_adv_setup, &aj_adv};
+  processArray[10] = {&credits_setup, &credits_loop};
+  processArray[11] = {&wifispam_setup, &wifispam_loop};
+  processArray[12] = {&wsmenu_setup, &wsmenu_loop};
+  processArray[13] = {&tvbgmenu_setup, &tvbgmenu_loop};
+  processArray[14] = {&wscan_setup, &wscan_loop};
+  processArray[15] = {&wscan_result_setup, &wscan_result_loop};
+  processArray[16] = {&btmenu_setup, &btmenu_loop};
+  processArray[17] = {&btmaelstrom_setup, &btmaelstrom_loop};
+  processArray[18] = {&qrmenu_setup, &qrmenu_loop};
+  processArray[19] = {&portal_setup, &portal_loop};
+  processArray[20] = {&wsAmenu_setup, &wsAmenu_loop};
+#if defined(DEAUTHER)
+  processArray[21] = {&deauth_setup, &deauth_loop};
+#endif
+  processArray[22] = {&color_setup, &color_loop};
+  processArray[23] = {&theme_setup, &theme_loop};
+#if defined(SDCARD)                                                // SDCARD M5Stick
+  #ifndef CARDPUTER                                                // SDCARD M5Stick
+    processArray[91] = {&defaultProc, &ToggleSDCard};                                         // SDCARD M5Stick
+  #endif                                                           // SDCARD M5Stick
+#endif  
+  
+}
+
+
 /// ENTRY ///
 void setup() {
 #if defined(CARDPUTER)
@@ -563,7 +623,11 @@ void setup() {
   DISP.setRotation(rotation);
   DISP.setTextColor(FGCOLOR, BGCOLOR);
   bootScreen();
+  
+  setupProcArray();
+  
 }
+
 
 void loop() {
   // This is the code to handle running the main loops
@@ -576,191 +640,8 @@ void loop() {
   if (isSwitching) {
     isSwitching = false;
     Serial.printf("Switching To Task: %d\n", current_proc);
-    switch (current_proc) {
-#if defined(RTC)
-      case 0:
-        clock_setup();
-        break;
-#endif
-      case 1:
-        mmenu_setup();
-        break;
-      case 2:
-        smenu_setup();
-        break;
-#if defined(RTC)
-      case 3:
-        timeset_setup();
-        break;
-#endif
-      case 4:
-        dmenu_setup();
-        break;
-      case 5:
-        tvbgone_setup();
-        break;
-#if defined(AXP) || defined(PWRMGMT)
-      case 6:
-        battery_setup();
-        break;
-#endif
-#if defined(CARDPUTER)
-      case 6:
-        battery_setup();
-        break;
-#endif
-#if defined(ROTATION)
-      case 7:
-        rmenu_setup();
-        break;
-#endif
-      case 8:
-        aj_setup();
-        break;
-      case 9:
-        aj_adv_setup();
-        break;
-      case 10:
-        credits_setup();
-        break;
-      case 11:
-        wifispam_setup();
-        break;
-      case 12:
-        wsmenu_setup();
-        break;
-      case 13:
-        tvbgmenu_setup();
-        break;
-      case 14:
-        wscan_setup();
-        break;
-      case 15:
-        wscan_result_setup();
-        break;
-      case 16:
-        btmenu_setup();
-        break;
-      case 17:
-        btmaelstrom_setup();
-        break;
-      case 18:
-        qrmenu_setup();
-        break;
-      case 19:
-        portal_setup();
-        break;
-            case 20:
-        wsAmenu_setup();
-        break;
-      #if defined(DEAUTHER)
-        case 21:
-          deauth_setup();
-          break;
-      #endif
-        case 22:
-          color_setup();
-          break;
-        case 23:
-          theme_setup();
-          break;
-    }
+    processArray[current_proc].setup_func();
   }
 
-  switch (current_proc) {
-#if defined(RTC)
-    case 0:
-      clock_loop();
-      break;
-#endif
-    case 1:
-      mmenu_loop();
-      break;
-    case 2:
-      smenu_loop();
-      break;
-#if defined(RTC)
-    case 3:
-      timeset_loop();
-      break;
-#endif
-    case 4:
-      dmenu_loop();
-      break;
-    case 5:
-      tvbgone_loop();
-      break;
-#if defined(AXP) || defined(PWRMGMT)
-    case 6:
-      battery_loop();
-      break;
-#endif
-#if defined(CARDPUTER)
-    case 6:
-      battery_loop();
-      break;
-#endif
-#if defined(ROTATION)
-    case 7:
-      rmenu_loop();
-      break;
-#endif
-    case 8:
-      aj_loop();
-      break;
-    case 9:
-      aj_adv();
-      break;
-    case 10:
-      credits_loop();
-      break;
-    case 11:
-      wifispam_loop();
-      break;
-    case 12:
-      wsmenu_loop();
-      break;
-    case 13:
-      tvbgmenu_loop();
-      break;
-    case 14:
-      wscan_loop();
-      break;
-    case 15:
-      wscan_result_loop();
-      break;
-    case 16:
-      btmenu_loop();
-      break;
-    case 17:
-      btmaelstrom_loop();
-      break;
-    case 18:
-      qrmenu_loop();
-      break;
-    case 19:
-      portal_loop();
-      break;
-    case 20:
-      wsAmenu_loop();
-      break;
-    #if defined(DEAUTHER)                                             // DEAUTH
-      case 21:
-        deauth_loop();                                                // DEAUTH
-        break;                                                        // DEAUTH
-    #endif                                                            // DEAUTH
-      case 22:
-        color_loop();
-        break;
-      case 23:
-        theme_loop();
-        break;
-    #if defined(SDCARD)                                                // SDCARD M5Stick
-      #ifndef CARDPUTER                                                // SDCARD M5Stick
-        case 97:
-          ToggleSDCard();                                              // SDCARD M5Stick
-          break;                                                       // SDCARD M5Stick
-      #endif                                                           // SDCARD M5Stick
-    #endif                                                             // SDCARD M5Stick
-  }
+  processArray[current_proc].loop_func();
 }

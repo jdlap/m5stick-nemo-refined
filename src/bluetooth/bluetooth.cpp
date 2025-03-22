@@ -1,8 +1,8 @@
 
 #include "Arduino.h"
-#include "bluetooth.h"
-#include "applejuice.h"
-#include "wifispam.h"
+#include "../bluetooth/bluetooth.h"
+#include "../applejuice/applejuice.h"
+#include "../wifispam/wifispam.h"
 
 
 /// Bluetooth Spamming ///

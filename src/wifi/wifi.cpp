@@ -1,8 +1,8 @@
 
 #include "Arduino.h"
-#include "wifispam.h"
+#include "../wifispam/wifispam.h"
 #include "wifi.h"
-#include "portal.h"
+#include "../portal/portal.h"
 
 /// WiFiSPAM ///
 void wifispam_setup() {

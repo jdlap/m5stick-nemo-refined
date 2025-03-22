@@ -55,6 +55,7 @@ arduino-cli compile --log \
   --build-property build.partitions=huge_app \
   --build-property upload.maximum_size=3145728 \
   --build-property compiler.cpp.extra_flags="${extra_flags}" \
+  --libraries ./libraries \
   --output-dir ./m5stick-nemo/build \
   ./m5stick-nemo/m5stick-nemo.ino
 

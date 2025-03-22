@@ -21,7 +21,7 @@ TV-B-Gone Firmware version 1.2
 #define WORD_IR_CODES_H
 
 
-#include "tvbg.h"
+#include "../tvbg/tvbg.h"
 
 const uint16_t code_na000Times[] = {
   60, 60,

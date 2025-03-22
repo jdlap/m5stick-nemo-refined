@@ -1,7 +1,7 @@
 #ifndef BLE_SPAM_H
 #define BLE_SPAM_H
 
-#include "common.h"
+#include "../common/common.h"
 
 
 /// Bluetooth Spamming ///

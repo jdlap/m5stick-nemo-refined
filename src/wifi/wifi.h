@@ -1,7 +1,7 @@
 #ifndef MY_WIFI_H
 #define MY_WIFI_H
 
-#include "common.h"
+#include "../common/common.h"
 
 
 /// WiFiSPAM ///

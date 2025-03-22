@@ -7,7 +7,7 @@
 
 #include <DNSServer.h>
 #include <WebServer.h>
-#include "sd.h"
+#include "../sd/sd.h"
 
 #define DEFAULT_AP_SSID_NAME "NEMO Free WiFi"
 #define SD_CREDS_PATH "/nemo-portal-creds.txt"

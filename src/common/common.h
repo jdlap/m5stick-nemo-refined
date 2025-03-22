@@ -272,11 +272,11 @@ bool clone_flg = false;
 #include <WebServer.h>
 #include <BLEUtils.h>
 #include <BLEServer.h>
-#include "localization.h"
-#include "portal.h"
+#include "../localization/localization.h"
+#include "../portal/portal.h"
 
 #if defined(DEAUTHER)
-  #include "deauth.h"                                                               //DEAUTH
+  #include "../deauth/deauth.h"                                                           //DEAUTH
   #include "esp_wifi.h"                                                             //DEAUTH
   wifi_ap_record_t ap_record;                                                       //DEAUTH
 #endif

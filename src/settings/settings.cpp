@@ -3,11 +3,6 @@
 #include "settings.h"
 
 
-
-
-
-
-
 /// SETTINGS MENU ///
 
 MENU smenu[] = {

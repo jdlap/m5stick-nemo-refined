@@ -1,5 +1,6 @@
 
 #include "Arduino.h"
+#include "../common/common.h"
 #include "tvbg.h"
 
 /// TV-B-GONE ///
