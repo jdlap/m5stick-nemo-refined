@@ -342,4 +342,10 @@ void setupWebServer() {
   webServer.begin();
 }
 
+
+/// NEMO PORTAL
+
+void portal_setup();
+void portal_loop();
+
 #endif
