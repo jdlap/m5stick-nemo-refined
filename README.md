@@ -23,6 +23,7 @@ My Changes:
 
 ## My ToDo list
 * Add 433 MHz module support
+* Refine User Interface
 
 ## Features
 * [TV B-Gone](http://www.righto.com/2010/11/improved-arduino-tv-b-gone.html) port (thanks to MrArm's [HAKRWATCH](https://github.com/MrARM/hakrwatch)) to shut off many infrared-controlled TVs, projectors and other devices
