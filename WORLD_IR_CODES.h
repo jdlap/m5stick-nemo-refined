@@ -17,6 +17,10 @@ TV-B-Gone Firmware version 1.2
 //Codes captured from Generation 3 TV-B-Gone by Limor Fried & Mitch Altman
 //table of POWER codes
 
+#ifndef WORD_IR_CODES_H
+#define WORD_IR_CODES_H
+
+
 #include "tvbg.h"
 
 const uint16_t code_na000Times[] = {
@@ -8833,3 +8837,5 @@ const IrCode* const EUpowerCodes[] = {
 
 uint8_t num_NAcodes = NUM_ELEM(NApowerCodes);
 uint8_t num_EUcodes = NUM_ELEM(EUpowerCodes);
+
+#endif

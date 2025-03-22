@@ -1,4 +1,8 @@
 
+#ifndef SD_CARD_H
+#define SD_CARD_H
+
+
 bool sdcardMounted = false;
 #if defined(SDCARD)
   #include <FS.h>
@@ -123,4 +127,6 @@ bool setupSdCard() {
       delay(1500);
     }
   #endif
+#endif
+
 #endif

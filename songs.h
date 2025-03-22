@@ -3,6 +3,9 @@
   You cand find a list of #define for other octaves at Robson's Github.
   IG: @35mmatuda | https://github.com/Mmatuda
 */
+#ifndef SONGS_H
+#define SONGS_H
+
 /* 
   Super Mario Bros - Overworld theme 
   More songs available at https://github.com/robsoncouto/arduino-songs                                            
@@ -88,3 +91,5 @@ void setupSongs() {
     
   }
 }
+
+#endif

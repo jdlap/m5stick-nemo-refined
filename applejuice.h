@@ -1,3 +1,7 @@
+#ifndef APPLEJUICE_H
+#define APPLEJUICE_H
+
+
 #include <BLEDevice.h>
 // globals for passing bluetooth info between routines
 // AppleJuice Payload Data 
@@ -245,3 +249,5 @@ int android_models_count = (sizeof(android_models) / sizeof(android_models[0]));
 
 BLEAdvertisementData oAdvertisementData = BLEAdvertisementData();
 BLEAdvertising *pAdvertising;
+
+#endif

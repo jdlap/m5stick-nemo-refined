@@ -1,3 +1,6 @@
+#ifndef WIFISPAM_H
+#define WIFISPAM_H
+
 // ===== Settings ===== //
 #if defined(LANGUAGE_FR_FR) || defined (LANGUAGE_PT_BR) // please check your country’s restrictions and choose only the Wi-Fi channels allowed there
 const uint8_t channels[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13}; // used Wi-Fi channels (available: 1-14)
@@ -247,3 +250,5 @@ void beaconSpamList(const char list[]){
     i += j;
   }
 }
+
+#endif

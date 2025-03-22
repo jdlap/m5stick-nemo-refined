@@ -3,6 +3,10 @@ Last Updated: 30 Mar. 2018
 By Anton Grimpelhuber (anton.grimpelhuber@gmail.com)
 */
 
+#ifndef TVBG_H
+#define TVBG_H
+
+
 // The TV-B-Gone for Arduino can use either the EU (European Union) or the NA (North America) database of POWER CODES
 // EU is for Europe, Middle East, Australia, New Zealand, and some countries in Africa and South America
 // NA is for North America, Asia, and the rest of the world not covered by EU
@@ -102,3 +106,16 @@ void quickflashLEDx( uint8_t x ) {
     quickflashLED();
   }
 }
+
+
+
+/// TV-B-GONE ///
+void tvbgone_setup();
+void tvbgone_loop();
+
+/// TVBG-Region MENU ///
+void tvbgmenu_setup();
+void tvbgmenu_loop();
+void sendAllCodes();
+
+#endif

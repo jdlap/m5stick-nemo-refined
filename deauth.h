@@ -1,4 +1,5 @@
-
+#ifndef DEAUTH_H
+#define DEAUTH_H
 
 
   // Borrowed from https://github.com/justcallmekoko/ESP32Marauder/
@@ -78,6 +79,9 @@
       memcpy(&deauth_frame[10], ap_record->bssid, 6);
       memcpy(&deauth_frame[16], ap_record->bssid, 6);
   }
+
+
+#endif
 
 
 #endif

