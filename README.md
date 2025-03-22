@@ -1,21 +1,12 @@
-# M5Stick-NEMO
+# M5Stick-NEMO Refined
 Firmware for high-tech pranks on M5Stack ESP32 Devices
 
-![M5-Nemo Matrix Logo](https://github.com/n0xa/m5stick-nemo/blob/main/NEMOMatrix.png)
-Logo by @unagironin
-
-## Archived ## 
-As announced earlier this year, M5Stick-NEMO has been archived and is no longer under active development. The project exceeded all of my personal goals and it was amazing to see the community come together, get excited about the project, contribute to it, and get inspired by it.   
-As far as I am concerned, the project reached the limit of what the M5Stick family is capable of, for these sort of tricks and pranks, without adding external hardware such as SD Cards, radio modems, larger LEDs, RFID modules or other things. The battery life is also sub-optimal for driving these external peripherals. Many feature requests revolve around support for these external devices, and I don't have the resources or time to add these, but the good news is others have carried on the spirit with, honestly, better features. One project that has a lot of promise is [CatHack](https://github.com/Stachugit/CatHack).  
-
-So long, and thanks for all the fish!  
-## Name and Background
-NEMO started a personal project to help me learn more about ESP32 development with the Arduino IDE. I decided to replicate a few common, trending pranks that were getting a lot of attention in the tech community, as a challenge to myself, and to also better understand these attacks.  
-NEMO is named after the small, clever and stubborn fish in Finding Nemo. This project stands in contrast to another high-tech gadget that's associated with certain sea-dwelling creatures. I did want to prove that there are a lot of things you can do with a small development kit and some curiosity. I have no delusions of superseding the capabilities of any similar device with this project. It's just for fun, and my own education.  
-
-![M5-Nemo on M5StickC family and M5Cardputer](https://github.com/n0xa/m5stick-nemo/blob/main/M5-Nemo.jpg)
+## Background
+This fork was created to clean up some of the implementation of the original NEMO project, hopefully making continued development easier.
+In this repo I also hope to add some open source hardware addons that can be used to expand the functionality of the M5Stick devices
 
 ## My Changelog
+Original Changes:
 * Adjusted .github/workflow/compile.yml to compile with the DEAUTH function.
 * Added support to SONG on StickC Plus and Plus2
 * Added an "Attack Menu" when seeing details of an Access Point
@@ -25,9 +16,13 @@ NEMO is named after the small, clever and stubborn fish in Finding Nemo. This pr
 * Added option in Settings to Mount/Unmount SDCard when using M5StickC devices
 * Created new file to handle SPI/SD if not using CARDPUTER
 * SDCARD is now working on M5StickC Plus2
+My Changes:
+* Reorganized files in repo to make logical flow cleaner
+* Generalized the process calls to make adding new ones easier
+
 
 ## My ToDo list
-* ideas?
+* Add 433 MHz module support
 
 ## Features
 * [TV B-Gone](http://www.righto.com/2010/11/improved-arduino-tv-b-gone.html) port (thanks to MrArm's [HAKRWATCH](https://github.com/MrARM/hakrwatch)) to shut off many infrared-controlled TVs, projectors and other devices
